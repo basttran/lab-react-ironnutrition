@@ -34,13 +34,15 @@ class App extends Component {
 
   filterFood(searchObject) {
     const foods = this.state.foodArray;
+
     // update the array (add at the beginning so we don't need to scroll for feedback)
-    foods.filter(oneFood => {
-      return oneFood.name.indexOf(searchObject) !== -1;
-    });
 
     // save the new array in the state to render the component again
-    this.setState({ foodArray: foods });
+    this.setState({
+      foodArray: foods.filter(oneFood => {
+        return oneFood.name.includes(searchObject);
+      })
+    });
   }
 
   render() {
